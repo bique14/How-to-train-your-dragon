@@ -1,5 +1,4 @@
-const DATA = require("./QA.json");
-
+const qa = require("qa-module");
 const express = require("express");
 const app = express();
 const PORT = 2001;
@@ -9,20 +8,21 @@ app.listen(PORT, () => {
 });
 
 app.get("/questions", (req, res) => {
-  res.json(DATA);
+  const result = qa.allQuestion();
+  res.json(result);
 });
 
 app.get("/question", (req, res) => {
   const { id } = req.query;
   try {
     if (!id) {
-      throw new Error("Invalid query");
+      throw new Error();
     } else {
-      const filtered = filterById(DATA, id);
-      if (!filtered) {
-        throw new Error("Not found");
+      const result = qa.getQuestion(id);
+      if (!result) {
+        throw new Error();
       } else {
-        res.send(filtered);
+        res.send(result);
       }
     }
   } catch (e) {
@@ -30,5 +30,3 @@ app.get("/question", (req, res) => {
     res.end();
   }
 });
-
-const filterById = (obj, id) => obj.filter((o) => o.id === id)[0];
