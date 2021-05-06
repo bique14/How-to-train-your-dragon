@@ -4,8 +4,8 @@ const path = require("path");
 let win, childWindow;
 function createWindow() {
   win = new BrowserWindow({
-    width: 800,
-    height: 800,
+    width: 375,
+    height: 667,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
@@ -13,22 +13,25 @@ function createWindow() {
     },
   });
 
-  win.webContents.openDevTools();
   win.loadFile("index.html");
+
+  win.on("closed", () => {
+    win = null;
+  });
 }
 
 function createChildWindow() {
   childWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 400,
+    height: 400,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
     },
   });
 
-  childWindow.webContents.openDevTools();
   childWindow.loadFile("answer.html");
+  childWindow.setPosition(200, 200);
 
   childWindow.on("closed", () => {
     childWindow = null;

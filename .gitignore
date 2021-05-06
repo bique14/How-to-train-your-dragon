@@ -1,5 +1,4 @@
 node_modules
 .DS_Store
-build/
-qa-module/dist/
-qa-service/dist/
+build
+dist
