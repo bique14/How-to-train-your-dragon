@@ -1,12 +1,16 @@
 const { ipcRenderer } = require("electron");
-const MOCK = require("./QA.json");
 const questionText = document.getElementById("question");
 const answerText = document.getElementById("answer");
 
-const filtered = (arr, id) => arr.filter((a) => a.id === id)[0];
-
-ipcRenderer.on("answer", (event, arg) => {
-  const { question, answer } = filtered(MOCK, arg);
+ipcRenderer.on("answer", async (event, arg) => {
+  const { question, answer } = await fetchQuestion(arg);
   questionText.innerText = question;
   answerText.innerText = `Answer: ${answer}`;
 });
+
+const fetchQuestion = async (questionId) => {
+  const question = await fetch(
+    `http://localhost:2001/question/?id=${questionId}`
+  );
+  return await question.json();
+};

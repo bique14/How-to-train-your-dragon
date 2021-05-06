@@ -52,10 +52,10 @@ app.on("window-all-closed", () => {
 });
 
 ipcMain.on("open-answer-window", async (event, arg) => {
-  // if (!childWindow) {
-  //   await createSync();
-  // }
-  // childWindow.webContents.send("answer", arg);
+  if (!childWindow) {
+    await createSync();
+  }
+  childWindow.webContents.send("answer", arg);
 });
 
 function createSync() {
