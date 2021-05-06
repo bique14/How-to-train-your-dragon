@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+      "lib": ["es2015", "DOM"],
+      "esModuleInterop": true,
+      "resolveJsonModule": true,
+      "outDir": "./build",
+      "target": "es5",
+      "module": "commonjs",
+      "strict": true,
+      "noImplicitAny": false
+  },
+}

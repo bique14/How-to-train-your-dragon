@@ -15,6 +15,10 @@ function createWindow() {
 
   win.webContents.openDevTools();
   win.loadFile("index.html");
+
+  win.on("closed", () => {
+    win = null;
+  });
 }
 
 function createChildWindow() {
@@ -51,15 +55,15 @@ app.on("window-all-closed", () => {
   }
 });
 
-ipcMain.on("open-answer-window", async (event, arg) => {
+ipcMain.on("open-answer-window", async (event, arg: any) => {
   if (!childWindow) {
     await createSync();
   }
   childWindow.webContents.send("answer", arg);
 });
 
-function createSync() {
-  return new Promise((resolve, reject) => {
+function createSync(): Promise<void> {
+  return new Promise<void>((resolve, _): void => {
     createChildWindow();
     childWindow.webContents.on("did-finish-load", () => resolve());
   });

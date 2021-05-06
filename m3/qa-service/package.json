@@ -1,12 +1,13 @@
 {
   "name": "qa-service",
   "version": "1.0.0",
-  "description": "",
+  "description": "Mission 3",
   "main": "dist/server.js",
   "types": "dist/server.d.ts",
   "scripts": {
     "build": "tsc",
-    "start": "nodemon dist/server.js"
+    "serve": "nodemon dist/server.js",
+    "start": "npm run build && npm run serve"
   },
   "author": "",
   "license": "ISC",
