@@ -1,0 +1,21 @@
+{
+  "name": "qa-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server.js",
+  "types": "dist/server.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "nodemon dist/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.11",
+    "express": "^4.17.1",
+    "qa-module": "file:../qa-module"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  }
+}
