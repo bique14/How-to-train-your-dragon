@@ -7,13 +7,13 @@ function createWindow() {
     width: 375,
     height: 667,
     webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
+      preload: path.join(__dirname, "src/preload/preload.js"),
       nodeIntegration: true,
       contextIsolation: false,
     },
   });
 
-  win.loadFile("index.html");
+  win.loadFile("src/renderer/components/index.html");
 
   win.on("closed", () => {
     win = null;

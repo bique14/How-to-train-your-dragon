@@ -1,5 +1,5 @@
 const { ipcRenderer } = require("electron");
-const MOCK = require("./QA.json");
+const MOCK = require("../../../../QA.json");
 const questionText = document.getElementById("question");
 const answerText = document.getElementById("answer");
 
