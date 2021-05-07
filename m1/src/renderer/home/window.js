@@ -2,7 +2,7 @@ const { BrowserWindow } = require("electron");
 const path = require("path");
 
 function createWindow() {
-  const win = new BrowserWindow({
+  let win = new BrowserWindow({
     width: 375,
     height: 667,
     webPreferences: {

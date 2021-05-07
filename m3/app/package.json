@@ -4,10 +4,11 @@
   "description": "Mission 3",
   "main": "build/main.js",
   "scripts": {
-    "copy:html": "mkdir -p build && cp index.html answer.html build",
+    "clean": "rm -rf build/*",
+    "copy:html": "mkdir -p build/src/page && cp src/page/index.html src/page/answer.html build/src/page",
     "build": "tsc",
     "serve": "electron build/main.js",
-    "start": "npm run build && npm run copy:html && npm run serve"
+    "start": "npm run clean && npm run build && npm run copy:html && npm run serve"
   },
   "keywords": [],
   "author": "NongBig",

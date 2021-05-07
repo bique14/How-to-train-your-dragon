@@ -1,49 +1,13 @@
-const { app, BrowserWindow, dialog, ipcMain } = require("electron");
-const path = require("path");
-
-let win, childWindow;
-function createWindow() {
-  win = new BrowserWindow({
-    width: 375,
-    height: 667,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-      nodeIntegration: true,
-      contextIsolation: false,
-    },
-  });
-
-  win.loadFile("index.html");
-
-  win.on("closed", () => {
-    win = null;
-  });
-}
-
-function createChildWindow() {
-  childWindow = new BrowserWindow({
-    width: 400,
-    height: 400,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-    },
-  });
-
-  childWindow.loadFile("answer.html");
-  childWindow.setPosition(200, 200);
-
-  childWindow.on("closed", () => {
-    childWindow = null;
-  });
-}
+import { app, BrowserWindow, ipcMain } from "electron";
+import { createWindow as createMainWindow } from "./src/renderer/home/window";
+import { createWindow as createChildWindow } from "./src/renderer/answer/window";
 
 app.whenReady().then(() => {
-  createWindow();
+  createMainWindow();
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
+      createMainWindow();
     }
   });
 });
@@ -54,16 +18,7 @@ app.on("window-all-closed", () => {
   }
 });
 
-ipcMain.on("open-answer-window", async (event, arg: any) => {
-  if (!childWindow) {
-    await createSync();
-  }
-  childWindow.webContents.send("answer", arg);
+ipcMain.on("open-answer-window", async (event, arg) => {
+  const cw = await createChildWindow();
+  cw?.webContents.send("answer", arg);
 });
-
-function createSync(): Promise<void> {
-  return new Promise<void>((resolve, _): void => {
-    createChildWindow();
-    childWindow.webContents.on("did-finish-load", () => resolve());
-  });
-}

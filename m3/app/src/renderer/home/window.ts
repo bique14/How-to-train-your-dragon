@@ -1,8 +1,8 @@
-const { BrowserWindow } = require("electron");
-const path = require("path");
+import { BrowserWindow } from "electron";
+import path from "path";
 
-function createWindow() {
-  let win = new BrowserWindow({
+export function createWindow(): BrowserWindow {
+  let win: BrowserWindow | null = new BrowserWindow({
     width: 875,
     height: 667,
     webPreferences: {
@@ -12,11 +12,10 @@ function createWindow() {
 
   win.loadFile(path.join(__dirname, "../../page/index.html"));
   win.webContents.openDevTools();
-  win.on("destroyed", () => {
+
+  win.webContents.on("destroyed", () => {
     win = null;
   });
 
   return win;
 }
-
-module.exports = { createWindow };
