@@ -2,15 +2,6 @@ const { ipcRenderer } = require("electron");
 const MOCK = require("../../../QA.json");
 
 window.addEventListener("DOMContentLoaded", () => {
-  const replaceText = (selector, text) => {
-    const element = document.getElementById(selector);
-    if (element) element.innerText = text;
-  };
-
-  for (const type of ["chrome", "node", "electron"]) {
-    replaceText(`${type}-version`, process.versions[type]);
-  }
-
   const ul = document.getElementById("question-list");
   ul.style.padding = "0";
 
