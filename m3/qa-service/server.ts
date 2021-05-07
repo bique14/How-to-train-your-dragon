@@ -9,12 +9,12 @@ app.listen(PORT, (): void => {
   console.log(`Server is running on port ${PORT}`);
 });
 
-app.get("/questions", (_, res) => {
+app.get("/questions", (_: express.Request, res: express.Response) => {
   const result: Question[] = qa.allQuestion();
   res.json(result);
 });
 
-app.get("/question", (req, res) => {
+app.get("/question", (req: express.Request, res: express.Response) => {
   const id: string = req.query.id as string;
   try {
     if (!id) {
