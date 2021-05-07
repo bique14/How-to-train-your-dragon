@@ -3,7 +3,7 @@ import path from "path";
 
 export function createWindow(): BrowserWindow {
   let win: BrowserWindow | null = new BrowserWindow({
-    width: 875,
+    width: 375,
     height: 667,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -11,7 +11,6 @@ export function createWindow(): BrowserWindow {
   });
 
   win.loadFile(path.join(__dirname, "../../page/index.html"));
-  win.webContents.openDevTools();
 
   win.webContents.on("destroyed", () => {
     win = null;

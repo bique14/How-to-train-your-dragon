@@ -20,5 +20,5 @@ app.on("window-all-closed", () => {
 
 ipcMain.on("open-answer-window", async (event, arg) => {
   const cw = await createChildWindow();
-  cw?.webContents.send("answer", arg);
+  cw!.webContents.send("answer", arg);
 });
