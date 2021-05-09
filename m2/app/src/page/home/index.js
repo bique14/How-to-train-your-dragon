@@ -1,31 +1,21 @@
-const { ipcRenderer } = require("electron");
-
 window.addEventListener("DOMContentLoaded", async () => {
-  const replaceText = (selector, text) => {
-    const element = document.getElementById(selector);
-    if (element) element.innerText = text;
-  };
-
-  for (const type of ["chrome", "node", "electron"]) {
-    replaceText(`${type}-version`, process.versions[type]);
-  }
-
   const ul = document.getElementById("question-list");
   ul.style.padding = "0";
 
   const questions = await fetchQuestions();
+
   const li = createQuestionElements(questions);
   ul.appendChild(li);
 
   ul.addEventListener("click", (e) => {
     if (e.target.matches("li")) {
-      ipcRenderer.send("open-answer-window", e.target.id);
+      window.electron.openAnswerWindow(e.target.id);
     }
   });
 });
 
 const fetchQuestions = async () => {
-  const questions = await fetch("http://localhost:2001/questions/");
+  const questions = await fetch("http://localhost:2001/questions");
   return await questions.json();
 };
 

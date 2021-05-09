@@ -1,16 +1,17 @@
-const { BrowserWindow } = require("electron");
+const { contextBridge, BrowserWindow } = require("electron");
 const path = require("path");
 
 function createWindow() {
   let win = new BrowserWindow({
-    width: 375,
+    width: 1375,
     height: 667,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
   });
 
-  win.loadFile(path.join(__dirname, "../../page/index.html"));
+  win.loadFile(path.join(__dirname, "index.html"));
+  win.webContents.openDevTools();
 
   win.on("destroyed", () => {
     win = null;

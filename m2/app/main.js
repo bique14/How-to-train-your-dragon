@@ -1,7 +1,7 @@
 const { app, BrowserWindow, dialog, ipcMain } = require("electron");
 const path = require("path");
-const mainWindow = require("./src/renderer/home/window");
-const childWindow = require("./src/renderer/answer/window");
+const mainWindow = require("./src/page/home/window");
+const childWindow = require("./src/page/answer/window");
 
 app.whenReady().then(() => {
   mainWindow.createWindow();

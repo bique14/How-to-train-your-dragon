@@ -5,9 +5,10 @@
   "main": "main.js",
   "scripts": {
     "clean": "rm -rf ./src/bundle/*",
+    "create-bundle": "mkdir -p ./src/bundle/",
     "bundle:home": "browserify ./src/page/home/index.js > ./src/bundle/home.js",
     "bundle:answer": "browserify ./src/page/answer/index.js > ./src/bundle/answer.js",
-    "start": "npm run clean && npm run bundle:home && npm run bundle:answer && electron ."
+    "start": "npm run clean && npm run create-bundle && npm run bundle:home && npm run bundle:answer && electron ."
   },
   "keywords": [],
   "author": "NongBig",

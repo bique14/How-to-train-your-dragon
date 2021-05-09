@@ -5,15 +5,16 @@ let win;
 
 function createWindow_() {
   win = new BrowserWindow({
-    width: 400,
+    width: 1400,
     height: 400,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
   });
 
-  win.loadFile(path.join(__dirname, "../../page/answer.html"));
+  win.loadFile(path.join(__dirname, "index.html"));
   win.setPosition(200, 200);
+  win.webContents.openDevTools();
 
   win.on("closed", () => {
     win = null;
