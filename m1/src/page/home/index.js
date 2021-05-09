@@ -1,4 +1,3 @@
-const { ipcRenderer } = require("electron");
 const MOCK = require("../../../QA.json");
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -10,7 +9,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   ul.addEventListener("click", (e) => {
     if (e.target.matches("li")) {
-      ipcRenderer.send("open-answer-window", e.target.id);
+      window.electron.openAnswerWindow(e.target.id);
     }
   });
 });
@@ -18,7 +17,7 @@ window.addEventListener("DOMContentLoaded", () => {
 const createQuestionElements = (questions) => {
   const fragment = document.createDocumentFragment();
 
-  MOCK.forEach((m, i) => {
+  questions.forEach((m, i) => {
     const li = document.createElement("li");
     li.textContent = `Q${i + 1}: ${m.question}`;
     li.id = m.id;
