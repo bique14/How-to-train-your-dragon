@@ -1,4 +1,5 @@
 import type { Question } from "../../../question.type";
+import { fetchQuestions } from "../../service";
 
 window.addEventListener("DOMContentLoaded", async () => {
   const ul: HTMLElement | null = document.getElementById("question-list");
@@ -17,10 +18,10 @@ window.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-const fetchQuestions = async (): Promise<Question[]> => {
-  const questions = await fetch("http://localhost:2001/questions/");
-  return await questions.json();
-};
+// const fetchQuestions = async (): Promise<Question[]> => {
+//   const questions = await fetch("http://localhost:2001/questions/");
+//   return await questions.json();
+// };
 
 const createQuestionElements = (questions: Question[]): DocumentFragment => {
   const fragment: DocumentFragment = document.createDocumentFragment();
