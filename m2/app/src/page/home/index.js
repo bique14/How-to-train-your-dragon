@@ -14,11 +14,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   });
 });
 
-const fetchQuestions = async () => {
-  const questions = await fetch("http://localhost:2001/questions");
-  return await questions.json();
-};
-
 const createQuestionElements = (questions) => {
   const fragment = document.createDocumentFragment();
 

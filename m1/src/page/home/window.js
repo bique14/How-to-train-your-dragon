@@ -3,7 +3,7 @@ const path = require("path");
 
 function createWindow() {
   let win = new BrowserWindow({
-    width: 1375,
+    width: 375,
     height: 667,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -11,7 +11,7 @@ function createWindow() {
   });
 
   win.loadFile(path.join(__dirname, "index.html"));
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   win.on("destroyed", () => {
     win = null;
