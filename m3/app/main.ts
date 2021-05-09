@@ -1,6 +1,6 @@
 import { app, BrowserWindow, ipcMain } from "electron";
-import { createWindow as createMainWindow } from "./src/renderer/home/window";
-import { createWindow as createChildWindow } from "./src/renderer/answer/window";
+import { createWindow as createMainWindow } from "./src/page/home/window";
+import { createWindow as createChildWindow } from "./src/page/answer/window";
 
 app.whenReady().then(() => {
   createMainWindow();

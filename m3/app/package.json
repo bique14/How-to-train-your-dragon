@@ -5,10 +5,13 @@
   "main": "build/main.js",
   "scripts": {
     "clean": "rm -rf build/*",
-    "copy:html": "mkdir -p build/src/page && cp src/page/index.html src/page/answer.html build/src/page",
+    "create-bundle": "mkdir -p ./build/src/bundle/",
+    "copy:html": "mkdir -p build/src/page && cp src/page/home/index.html build/src/page/home && cp src/page/answer/index.html build/src/page/answer",
     "build": "tsc",
+    "bundle:home": "browserify ./build/src/page/home/index.js > ./build/src/bundle/home.js",
+    "bundle:answer": "browserify ./build/src/page/answer/index.js > ./build/src/bundle/answer.js",
     "serve": "electron build/main.js",
-    "start": "npm run clean && npm run build && npm run copy:html && npm run serve"
+    "start": "npm run clean && npm run build && npm run create-bundle && npm run bundle:home && npm run bundle:answer && npm run copy:html && npm run serve"
   },
   "keywords": [],
   "author": "NongBig",

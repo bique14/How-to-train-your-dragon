@@ -12,7 +12,7 @@ function createWindow_(): void {
     },
   });
 
-  win.loadFile(path.join(__dirname, "../../page/answer.html"));
+  win.loadFile(path.join(__dirname, "index.html"));
   win.setPosition(200, 200);
 
   win.on("closed", () => {

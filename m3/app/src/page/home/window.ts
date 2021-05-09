@@ -1,7 +1,7 @@
 import { BrowserWindow } from "electron";
 import path from "path";
 
-export function createWindow(): BrowserWindow {
+export function createWindow() {
   let win: BrowserWindow | null = new BrowserWindow({
     width: 375,
     height: 667,
@@ -10,7 +10,8 @@ export function createWindow(): BrowserWindow {
     },
   });
 
-  win.loadFile(path.join(__dirname, "../../page/index.html"));
+  win.loadFile(path.join(__dirname, "index.html"));
+  win.webContents.openDevTools();
 
   win.webContents.on("destroyed", () => {
     win = null;

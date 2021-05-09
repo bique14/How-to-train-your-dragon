@@ -1,20 +1,18 @@
 import type { Question } from "../../../question.type";
-import { ipcRenderer } from "electron";
 
 window.addEventListener("DOMContentLoaded", async () => {
   const ul: HTMLElement | null = document.getElementById("question-list");
+  ul!.style.padding = "0";
 
   const questions: Question[] = await fetchQuestions();
-  const li: DocumentFragment = createQuestionElements(questions);
 
-  ul!.style.padding = "0";
+  const li: DocumentFragment = createQuestionElements(questions);
   ul!.appendChild(li);
 
   ul!.addEventListener("click", (e) => {
     const target: HTMLElement = e.target as HTMLElement;
-
     if (target.matches("li")) {
-      ipcRenderer.send("open-answer-window", target.id);
+      window.electron.openAnswerWindow(target.id);
     }
   });
 });
