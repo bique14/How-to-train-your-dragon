@@ -8,10 +8,9 @@
     "create-bundle": "mkdir -p ./build/src/bundle/",
     "copy:html": "mkdir -p build/src/page && cp src/page/home/index.html build/src/page/home && cp src/page/answer/index.html build/src/page/answer",
     "build": "tsc",
-    "bundle:home": "browserify ./build/src/page/home/index.js > ./build/src/bundle/home.js",
-    "bundle:answer": "browserify ./build/src/page/answer/index.js > ./build/src/bundle/answer.js",
+    "bundle": "browserify ./build/src/page/home/index.js ./build/src/page/answer/index.js -p [ factor-bundle -o ./build/src/bundle/home.js -o ./build/src/bundle/answer.js ] -o ./build/src/bundle/common.js",
     "serve": "electron build/main.js",
-    "start": "npm run clean && npm run build && npm run create-bundle && npm run bundle:home && npm run bundle:answer && npm run copy:html && npm run serve"
+    "start": "npm run clean && npm run build && npm run create-bundle && npm run bundle && npm run copy:html && npm run serve"
   },
   "keywords": [],
   "author": "NongBig",
@@ -20,5 +19,7 @@
     "electron": "^12.0.6",
     "typescript": "^4.2.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "factor-bundle": "^2.5.0"
+  }
 }
