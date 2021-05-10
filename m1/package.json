@@ -6,9 +6,8 @@
   "scripts": {
     "clean": "rm -rf ./src/bundle/*",
     "create-bundle": "mkdir -p ./src/bundle/",
-    "bundle:home": "browserify ./src/page/home/index.js > ./src/bundle/home.js",
-    "bundle:answer": "browserify ./src/page/answer/index.js > ./src/bundle/answer.js",
-    "start": "npm run clean && npm run create-bundle && npm run bundle:home && npm run bundle:answer && electron ."
+    "bundle": "browserify ./src/page/home/index.js ./src/page/answer/index.js -p [ factor-bundle -o ./src/bundle/home.js -o ./src/bundle/answer.js ] -o ./src/bundle/common.js",
+    "start": "npm run clean && npm run create-bundle && npm run bundle && electron ."
   },
   "keywords": [],
   "author": "NongBig",
